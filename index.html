@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body
+    class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4"
+  >
+    <header class="text-center mb-6">
+      <h1 class="text-2xl md:text-3xl font-bold">Memory Card Game</h1>
+      <p class="text-gray-600 mt-2">Flip cards and match all pairs</p>
+    </header>
+
+    <main class="w-full max-w-md">
+      <div id="game-board" class="grid grid-cols-4 gap-3"></div>
+
+      <div class="flex justify-between items-center mt-4">
+        <button
+          id="restart-btn"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring"
+        >
+          Restart
+        </button>
+        <p id="status" class="text-gray-700 font-medium"></p>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
