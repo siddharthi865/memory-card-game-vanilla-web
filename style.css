@@ -1,37 +1,98 @@
-.card {
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.memory-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 0;
+  border-radius: 1rem;
+  background: transparent;
+  cursor: pointer;
   perspective: 1000px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.memory-card:focus-visible {
+  outline: 3px solid rgb(165 180 252);
+  outline-offset: 4px;
+}
+
+.memory-card:disabled {
+  cursor: default;
 }
 
 .card-inner {
-  transition: transform 0.4s;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
   transform-style: preserve-3d;
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
+  transition: transform 350ms ease;
 }
 
-.card.flipped .card-inner {
+.memory-card.is-flipped .card-inner,
+.memory-card.is-matched .card-inner {
   transform: rotateY(180deg);
 }
 
 .card-face {
   position: absolute;
   inset: 0;
-  backface-visibility: hidden;
-  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  border-radius: inherit;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  user-select: none;
 }
 
 .card-front {
-  background-color: #3b82f6;
-  color: white;
+  border: 1px solid rgb(71 85 105);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(99, 102, 241, 0.25),
+      transparent 50%
+    ),
+    rgb(30 41 59);
+  color: rgb(165 180 252);
+  font-size: clamp(1.5rem, 6vw, 2.25rem);
+  font-weight: 800;
+}
+
+.card-front::after {
+  content: "?";
 }
 
 .card-back {
-  background-color: #fff;
   transform: rotateY(180deg);
-  border: 2px solid #e5e7eb;
+  border: 1px solid rgb(99 102 241 / 0.45);
+  background: rgb(248 250 252);
+  font-size: clamp(1.75rem, 7vw, 3rem);
+}
+
+.memory-card.is-matched .card-back {
+  box-shadow:
+    0 0 0 2px rgb(74 222 128 / 0.65),
+    0 10px 30px rgb(34 197 94 / 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-inner {
+    transition: none;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
 }
